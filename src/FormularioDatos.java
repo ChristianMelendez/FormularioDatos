@@ -9,11 +9,11 @@
  * @author Español
  */
 public class FormularioDatos extends javax.swing.JFrame {
-         String nombre;
-        String apellido;
-        int dni;
-        int telefono;
-        int i=0;
+        String [] nombre=new String[10];// Crea un vector Nombre
+        String[] apellido=new String[10];// Crea un vector apellido. etc etc
+        int[] dni=new int[22];
+        int[] telefono=new int[22];
+        int i=0;// Crea un contador para el desplazamiento de los vectores
     /**
      * Creates new form FormularioDatos
      */
@@ -22,8 +22,8 @@ public class FormularioDatos extends javax.swing.JFrame {
         //Labelcontador.setVisible(false);
     }
     public void mostrar(){
-             TxtAreaDatos.setText(String.valueOf(dni)+"\n"+String.valueOf(telefono)+"\n"+nombre+"\n"+apellido);
-        }
+             TxtAreaDatos.setText("Nombre: "+nombre[i]+"\nApellido :"+apellido[i]+"\nDni : "+String.valueOf(dni[i])+"\nTelefono : "+String.valueOf(telefono[i]));
+        }// Metodo para mostrar en el areaText los datos segun el i (Indice)
     
     
     /**
@@ -46,7 +46,7 @@ public class FormularioDatos extends javax.swing.JFrame {
         BtnAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtAreaDatos = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        BtnBorrar = new javax.swing.JButton();
         BtnReset = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Btnsiguiente = new javax.swing.JButton();
@@ -84,12 +84,12 @@ public class FormularioDatos extends javax.swing.JFrame {
         TxtAreaDatos.setRows(5);
         jScrollPane1.setViewportView(TxtAreaDatos);
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Borrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnBorrar.setBackground(new java.awt.Color(255, 51, 51));
+        BtnBorrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BtnBorrar.setText("Borrar");
+        BtnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnBorrarActionPerformed(evt);
             }
         });
 
@@ -171,7 +171,7 @@ public class FormularioDatos extends javax.swing.JFrame {
                                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(101, 101, 101)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(BtnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(BtnAceptar))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
@@ -202,7 +202,7 @@ public class FormularioDatos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(TxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(LabelApellido)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(BtnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(TxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,17 +235,21 @@ public class FormularioDatos extends javax.swing.JFrame {
         // TODO add your handling code here:
         TxtAreaDatos.setText(TxtNombre.getText()+"\n"+TxtApellido.getText()+"\n"+TxtDNI.getText()+"\n"+TxtTel.getText());
         
-       nombre=TxtNombre.getText();
-       apellido=TxtApellido.getText();
-       dni=Integer.parseInt(this.TxtDNI.getText());
-       telefono=Integer.parseInt(this.TxtTel.getText());
-        Labelcontador.setText(String.valueOf(i));
+       nombre[i]=TxtNombre.getText();//Guarda en nombre[i] el nombre que se ingresa en el primer campo de texto
+       apellido[i]=TxtApellido.getText();// Same.
+       dni[i]=Integer.parseInt(this.TxtDNI.getText());//Guarda en dni[i] el entero que se ingresa en el tercer campo de texto
+       telefono[i]=Integer.parseInt(this.TxtTel.getText());// same
+        Labelcontador.setText(String.valueOf(i));//Muestra en el contador el valor del indice (Verificar si es necesario o no)
     }//GEN-LAST:event_BtnAceptarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarActionPerformed
         // TODO add your handling code here:
         TxtAreaDatos.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        nombre[i]="";//Vacia nombre[i] 
+       apellido[i]="";// Same.
+       dni[i]=0;//Pone en 0 el dni[i]
+       telefono[i]=0;// Same
+    }//GEN-LAST:event_BtnBorrarActionPerformed
 
     private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
         // TODO add your handling code here:
@@ -310,6 +314,7 @@ public class FormularioDatos extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
+    private javax.swing.JButton BtnBorrar;
     private javax.swing.JButton BtnReset;
     private javax.swing.JButton Btnanterior;
     private javax.swing.JButton Btnmostrar;
@@ -324,7 +329,6 @@ public class FormularioDatos extends javax.swing.JFrame {
     private javax.swing.JTextField TxtDNI;
     private javax.swing.JTextField TxtNombre;
     private javax.swing.JTextField TxtTel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
